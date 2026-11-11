@@ -2,182 +2,284 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Słowniczek – Flipper Zero</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f8f9fa;
-      color: #222;
-      margin: 0;
-      padding: 25px 12px;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    .container {
-      max-width: 1000px;
-      margin: auto;
+<title>Flipper Zero – Słowniczek</title>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: #f7f7f5;
+    font-family: Arial, sans-serif;
+    color: #292929;
+    line-height: 1.5;
+  }
+
+  main {
+    max-width: 1050px;
+    margin: 40px auto;
+    padding: 42px 48px;
+    background: white;
+  }
+
+  h1 {
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: normal;
+    margin: 0 0 6px;
+  }
+
+  .subtitle {
+    color: #777;
+    font-size: 14px;
+    margin-bottom: 35px;
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  th {
+    text-align: left;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #666;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-bottom: 2px solid #555;
+  }
+
+  td {
+    padding: 13px 14px;
+    border-bottom: 1px solid #e8e8e8;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    font-weight: 600;
+    width: 25%;
+  }
+
+  td:nth-child(2) {
+    width: 45%;
+  }
+
+  td:nth-child(3) {
+    width: 30%;
+    color: #555;
+  }
+
+  tr:last-child td {
+    border-bottom: 1px solid #aaa;
+  }
+
+  .activities {
+    margin-top: 55px;
+  }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-weight: normal;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 28px;
+  }
+
+  .exercise-list {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+
+  .exercise {
+    flex: 1;
+    min-width: 240px;
+  }
+
+  .exercise h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .exercise p {
+    font-size: 13px;
+    color: #777;
+    margin: 0 0 15px;
+  }
+
+  .exercise img {
+    display: block;
+    width: 155px;
+    height: 155px;
+    margin-bottom: 15px;
+  }
+
+  a {
+    color: #345b80;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+  }
+
+  .sources {
+    border-top: 1px solid #ddd;
+    margin-top: 50px;
+    padding-top: 20px;
+    font-size: 13px;
+  }
+
+  .sources strong {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  @media (max-width: 650px) {
+    main {
+      margin: 0;
+      padding: 24px 15px;
     }
 
     h1 {
-      text-align: center;
-      font-size: 28px;
-      margin-bottom: 25px;
+      font-size: 27px;
     }
 
     table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      font-size: 14px;
+      font-size: 12px;
     }
 
     th, td {
-      border: 1px solid #ddd;
-      padding: 11px;
-      text-align: left;
-      line-height: 1.5;
+      padding: 10px 7px;
     }
 
-    th {
-      background: #34495e;
-      color: white;
+    .exercise-list {
+      gap: 30px;
     }
-
-    tr:nth-child(even) {
-      background: #f2f4f6;
-    }
-
-    td:first-child {
-      font-weight: bold;
-    }
-
-    .exercises {
-      display: flex;
-      justify-content: center;
-      gap: 50px;
-      margin-top: 35px;
-      flex-wrap: wrap;
-    }
-
-    .exercise {
-      text-align: center;
-      width: 280px;
-    }
-
-    .exercise h2 {
-      font-size: 20px;
-      margin-bottom: 15px;
-    }
-
-    .exercise img {
-      width: 180px;
-      height: 180px;
-      border: 1px solid #ddd;
-      padding: 8px;
-      background: white;
-    }
-
-    .exercise a {
-      display: block;
-      margin-top: 12px;
-      color: #2365aa;
-      font-size: 14px;
-      overflow-wrap: anywhere;
-    }
-
-    @media (max-width: 600px) {
-      table { font-size: 12px; }
-      th, td { padding: 7px; }
-      h1 { font-size: 24px; }
-      .exercises { gap: 25px; }
-    }
-  </style>
+  }
+</style>
 </head>
-<body>
 
-<div class="container">
+<body>
+<main>
 
   <h1>Słowniczek</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>English Word</th>
-        <th>Simple English Definition</th>
-        <th>Polish Translation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td>1. Device</td><td>A piece of electronic equipment.</td><td>Urządzenie</td></tr>
-      <tr><td>2. Wireless</td><td>Working without cables.</td><td>Bezprzewodowy</td></tr>
-      <tr><td>3. Vulnerability</td><td>A weakness in a system that can cause security problems.</td><td>Luka w zabezpieczeniach</td></tr>
-      <tr><td>4. Security</td><td>Protection against danger or attacks.</td><td>Bezpieczeństwo, zabezpieczenia</td></tr>
-      <tr><td>5. Capability</td><td>The ability to do something.</td><td>Możliwość, zdolność</td></tr>
-      <tr><td>6. Signal</td><td>Information sent between electronic devices.</td><td>Sygnał</td></tr>
-      <tr><td>7. Infrared (IR)</td><td>Technology that uses invisible light to control devices.</td><td>Podczerwień</td></tr>
-      <tr><td>8. RFID</td><td>Technology that uses radio waves to identify objects or cards.</td><td>Identyfikacja radiowa</td></tr>
-      <tr><td>9. NFC</td><td>Technology that allows devices to communicate over short distances.</td><td>Komunikacja zbliżeniowa</td></tr>
-      <tr><td>10. Access credentials</td><td>Information used to enter a system or building.</td><td>Dane uwierzytelniające</td></tr>
-      <tr><td>11. Cloning</td><td>Making a copy of a card or device.</td><td>Klonowanie</td></tr>
-      <tr><td>12. Emulation</td><td>Making one device behave like another.</td><td>Emulacja, naśladowanie</td></tr>
-      <tr><td>13. Fixed code</td><td>A code that stays the same every time.</td><td>Stały kod</td></tr>
-      <tr><td>14. Rolling code</td><td>A code that changes after each use.</td><td>Zmienny kod</td></tr>
-      <tr><td>15. Interference</td><td>Something that interrupts a signal or communication.</td><td>Zakłócenia</td></tr>
-      <tr><td>16. Firmware</td><td>Software that controls how a device works.</td><td>Oprogramowanie urządzenia</td></tr>
-      <tr><td>17. Remote control</td><td>A device used to control equipment from a distance.</td><td>Pilot zdalnego sterowania</td></tr>
-      <tr><td>18. MIFARE Classic 1K</td><td>A type of contactless card used in some access systems.</td><td>Rodzaj karty zbliżeniowej</td></tr>
-      <tr><td>19. USB HID</td><td>Technology that lets a device act like a keyboard or mouse.</td><td>Urządzenie USB, np. klawiatura lub mysz</td></tr>
-      <tr><td>20. Bluetooth (BLE)</td><td>Wireless technology that uses little energy.</td><td>Bluetooth o niskim zużyciu energii</td></tr>
-      <tr><td>21. BLE Spam</td><td>Sending many Bluetooth messages to nearby devices.</td><td>Masowe wysyłanie sygnałów Bluetooth</td></tr>
-      <tr><td>22. Attack</td><td>An attempt to break or compromise a system.</td><td>Atak</td></tr>
-      <tr><td>23. Brute-force attack</td><td>Trying many possible codes to find the correct one.</td><td>Atak siłowy</td></tr>
-      <tr><td>24. Security audit</td><td>A process of checking a system for security problems.</td><td>Audyt bezpieczeństwa</td></tr>
-      <tr><td>25. Encryption / Cryptography</td><td>Methods used to protect information from other people.</td><td>Szyfrowanie / kryptografia</td></tr>
-    </tbody>
-  </table>
-
-  <!-- EXERCISES -->
-
-  <div class="exercises">
-
-    <div class="exercise">
-      <h2>Exercise 1 – Matching</h2>
-
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&amp;data=https%3A%2F%2Fwordwall.net%2Fpl%2Fresource%2F123667046%3Fwwmethod%3Dlink"
-        alt="QR Code – Exercise 1">
-
-      <a href="https://wordwall.net/pl/resource/123667046?wwmethod=link"
-         target="_blank" rel="noopener noreferrer">
-        https://wordwall.net/pl/resource/123667046?wwmethod=link
-      </a>
-    </div>
-
-    <div class="exercise">
-      <h2>Exercise 2 – Fill in the Gaps</h2>
-
-      <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&amp;data=https%3A%2F%2Fwordwall.net%2Fpl%2Fresource%2F123666252%2Fexcercise-1"
-        alt="QR Code – Exercise 2">
-
-      <a href="https://wordwall.net/pl/resource/123666252/excercise-1"
-         target="_blank" rel="noopener noreferrer">
-        https://wordwall.net/pl/resource/123666252/excercise-1
-      </a>
-    </div>
-
-<div style="text-align: center; margin-top: 30px; font-size: 14px;">
-  <strong>Źródła:</strong><br>
-  <a href="https://www.mdpi.com/2673-4591/123/1/6"
-     target="_blank" rel="noopener noreferrer">
-    Exploring the Real Capabilities of the Flipper Zero – MDPI
-  </a>
-  
-</div>
+  <div class="subtitle">
+    Exploring the Real Capabilities of the Flipper Zero
   </div>
 
-</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>English word</th>
+          <th>English definition</th>
+          <th>Polish translation</th>
+        </tr>
+      </thead>
 
+      <tbody>
+        <tr><td>1. Device</td><td>A piece of electronic equipment.</td><td>Urządzenie</td></tr>
+        <tr><td>2. Wireless</td><td>Working without cables.</td><td>Bezprzewodowy</td></tr>
+        <tr><td>3. Vulnerability</td><td>A weakness in a system that can cause security problems.</td><td>Luka w zabezpieczeniach</td></tr>
+        <tr><td>4. Security</td><td>Protection against danger or attacks.</td><td>Bezpieczeństwo, zabezpieczenia</td></tr>
+        <tr><td>5. Capability</td><td>The ability to do something.</td><td>Możliwość, zdolność</td></tr>
+        <tr><td>6. Signal</td><td>Information sent between electronic devices.</td><td>Sygnał</td></tr>
+        <tr><td>7. Infrared (IR)</td><td>Technology that uses invisible light to control devices.</td><td>Podczerwień</td></tr>
+        <tr><td>8. RFID</td><td>Technology that uses radio waves to identify objects or cards.</td><td>Identyfikacja radiowa</td></tr>
+        <tr><td>9. NFC</td><td>Technology that allows devices to communicate over short distances.</td><td>Komunikacja zbliżeniowa</td></tr>
+        <tr><td>10. Access credentials</td><td>Information used to enter a system or building.</td><td>Dane uwierzytelniające</td></tr>
+        <tr><td>11. Cloning</td><td>Making a copy of a card or device.</td><td>Klonowanie</td></tr>
+        <tr><td>12. Emulation</td><td>Making one device behave like another.</td><td>Emulacja, naśladowanie</td></tr>
+        <tr><td>13. Fixed code</td><td>A code that stays the same every time.</td><td>Stały kod</td></tr>
+        <tr><td>14. Rolling code</td><td>A code that changes after each use.</td><td>Zmienny kod</td></tr>
+        <tr><td>15. Interference</td><td>Something that interrupts a signal or communication.</td><td>Zakłócenia</td></tr>
+        <tr><td>16. Firmware</td><td>Software that controls how a device works.</td><td>Oprogramowanie urządzenia</td></tr>
+        <tr><td>17. Remote control</td><td>A device used to control equipment from a distance.</td><td>Pilot zdalnego sterowania</td></tr>
+        <tr><td>18. MIFARE Classic 1K</td><td>A type of contactless card used in some access systems.</td><td>Rodzaj karty zbliżeniowej</td></tr>
+        <tr><td>19. USB HID</td><td>Technology that lets a device act like a keyboard or mouse.</td><td>Urządzenie USB, np. klawiatura lub mysz</td></tr>
+        <tr><td>20. Bluetooth (BLE)</td><td>Wireless technology that uses little energy.</td><td>Bluetooth o niskim zużyciu energii</td></tr>
+        <tr><td>21. BLE Spam</td><td>Sending many Bluetooth messages to nearby devices.</td><td>Masowe wysyłanie sygnałów Bluetooth</td></tr>
+        <tr><td>22. Attack</td><td>An attempt to break or compromise a system.</td><td>Atak</td></tr>
+        <tr><td>23. Brute-force attack</td><td>Trying many possible codes to find the correct one.</td><td>Atak siłowy</td></tr>
+        <tr><td>24. Security audit</td><td>A process of checking a system for security problems.</td><td>Audyt bezpieczeństwa</td></tr>
+        <tr><td>25. Encryption / Cryptography</td><td>Methods used to protect information from other people.</td><td>Szyfrowanie / kryptografia</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section class="activities">
+
+    <h2>Exercises</h2>
+    <p class="description">
+      Practice the vocabulary using the exercises below.
+      Scan the QR code or open the link.
+    </p>
+
+    <div class="exercise-list">
+
+      <div class="exercise">
+        <h3>Exercise 1 – Matching</h3>
+        <p>Match the words with their definitions.</p>
+
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&amp;data=https%3A%2F%2Fwordwall.net%2Fpl%2Fresource%2F123667046%3Fwwmethod%3Dlink"
+          alt="QR code Exercise 1">
+
+        <a
+          href="https://wordwall.net/pl/resource/123667046?wwmethod=link"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open Exercise 1
+        </a>
+      </div>
+
+      <div class="exercise">
+        <h3>Exercise 2 – Fill in the gaps</h3>
+        <p>Complete the sentences with the correct words.</p>
+
+        <img
+          src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&amp;data=https%3A%2F%2Fwordwall.net%2Fpl%2Fresource%2F123666252%2Fexcercise-1"
+          alt="QR code Exercise 2">
+
+        <a
+          href="https://wordwall.net/pl/resource/123666252/excercise-1"
+          target="_blank"
+          rel="noopener noreferrer">
+          Open Exercise 2
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="sources">
+    <strong>Źródła:</strong>
+    <a
+      href="https://www.mdpi.com/2673-4591/123/1/6"
+      target="_blank"
+      rel="noopener noreferrer">
+      Exploring the Real Capabilities of the Flipper Zero – MDPI
+    </a>
+  </div>
+
+</main>
 </body>
 </html>
